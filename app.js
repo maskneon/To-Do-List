@@ -4,12 +4,13 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const _ =require("lodash");
 const { name } = require("ejs");
-
+const PORT = process.env.PORT || 3000;
 const app = express();
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 mongoose.connect("mongodb+srv://admin-yash:maskneon@cluster0.hkimuam.mongodb.net/todolistDB", {useNewUrlParser: true,});
+// mongoose.connect("mongodb://0.0.0.0/todolistDB",{useNewUrlParser: true,});
 const itemsSchema={
     name:String
 };
@@ -131,6 +132,6 @@ app.get("/about", function(req, res){
 });
 
 
-app.listen(3000, () => {
-  console.log("server is listening on port 3000!");
+app.listen(PORT, () => {
+  console.log(`server started on port ${PORT}`);
 });
